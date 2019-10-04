@@ -37,25 +37,48 @@ To work on the sample code, you'll need to clone your project's repository to yo
 local computer. If you haven't, do that first. You can find instructions in the
 AWS CodeStar user guide.
 
-1. Install maven.  See https://maven.apache.org/install.html for details.
+Guideline to run this project on CentOS 7.5
 
-2. Install tomcat.  See https://tomcat.apache.org/tomcat-8.0-doc/setup.html for
-   details.
+### 1. Install Java and maven
 
-3. Build the application.
+```
+yum install java-1.8.0-openjdk.x86_64 -y
+yum install maven
 
-        $ mvn -f pom.xml compile
-        $ mvn -f pom.xml package
+```
 
-4. Copy the built application to the Tomcat webapp directory.  The actual
-   location of that directory will vary depending on your platform and
-   installation.
 
-        $ cp target/ROOT.war <tomcat webapp directory>
+### 2. Install tomcat
 
-4. Restart your tomcat server
+```
+cd /root/
+wget https://s3.amazonaws.com/dhqs-mirror-iad/apache-tomcat-8.5.41.tar.gz
+mkdir /opt/tomcat
+tar xvf apache-tomcat-8*tar.gz -C /opt/tomcat --strip-components=1
+rm -rf /opt/tomcat/webapps/ROOT
+```
 
-5. Open http://127.0.0.1:8080/ in a web browser to view your application.
+### 3. Build the application.
+
+```
+cd /root/
+https://github.com/namnh68/codestar-demo.git
+cd codestar-demo
+mvn -f pom.xml compile
+mvn -f pom.xml package
+```
+
+### 4. Running application
+
+```
+cp /root/codestar-demo/target/ROOT.war /opt/tomcat/webapps
+cd /opt/tomcat/bin
+./shutdown.sh
+./startup.sh
+```
+
+### 5. Open http://127.0.0.1:8080/ in a web browser to view your application.
+
 
 What Do I Do Next?
 ------------------
