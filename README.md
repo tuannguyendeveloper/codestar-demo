@@ -62,7 +62,7 @@ rm -rf /opt/tomcat/webapps/ROOT
 
 ```
 cd /root/
-https://github.com/namnh68/codestar-demo.git
+git clone https://github.com/namnh68/codestar-demo.git
 cd codestar-demo
 mvn -f pom.xml compile
 mvn -f pom.xml package
